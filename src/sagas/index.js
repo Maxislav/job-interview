@@ -3,7 +3,7 @@ import { put, takeEvery, all } from 'redux-saga/effects'
 
 
 function* incrementAsync() {
-  yield delay(1000)
+  yield delay(2000)
   yield put({ type: 'INCREMENT' })
 }
 
@@ -13,6 +13,7 @@ function* watchIncrementAsync() {
 }
 
 function* helloSaga() {
+  yield delay(1000)
   console.log('Hello Sagas!')
 }
 
