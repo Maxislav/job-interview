@@ -1,8 +1,11 @@
 import React from 'react'
+import {RoomComponent} from "./room-component/room-component";
 
 
-export const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) =>
+export const Counter = ({ state, onIncrement, onDecrement, onIncrementAsync }) =>
   <div>
+    <RoomComponent/>
+
     <button onClick={onIncrementAsync}>
       Increment after 1 second
     </button>
@@ -16,6 +19,6 @@ export const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) =
     </button>
     <hr />
     <div>
-      Clicked: {value} times
+      Clicked: {state.count} times
     </div>
   </div>

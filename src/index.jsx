@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from 'redux'
 import {counterReducer} from './reducers'
+import { Provider } from 'react-redux'
 
 import createSagaMiddleware from 'redux-saga'
 
@@ -26,11 +27,13 @@ const Input = () => {
 
 function render() {
   ReactDOM.render(
-    <Counter
-      value={store.getState()}
-      onIncrement={() => action('INCREMENT')}
-      onDecrement={() => action('DECREMENT')}
-      onIncrementAsync={() => action('INCREMENT_ASYNC')} />,
+    <Provider store={store}>
+      <Counter
+        state={store.getState()}
+        onIncrement={() => action('INCREMENT')}
+        onDecrement={() => action('DECREMENT')}
+        onIncrementAsync={() => action('INCREMENT_ASYNC')} />
+    </Provider>,
     document.getElementById('root')
   )
 }

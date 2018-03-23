@@ -32,15 +32,32 @@ const config = {
             loader: 'babel-loader',
             options:{
               presets: [ 'env', 'react'],
-              plugins: [["transform-runtime", {
+              plugins: [
+                ["transform-runtime", {
                 "polyfill": false,
                 "regenerator": true
-              }] ]
+              }],
+                ['transform-decorators-legacy']]
             }
           }
 
         ],
       },
+      {
+        test: /\.styl$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1, modules: true },
+          },
+          {
+            loader: 'stylus-loader'
+          }
+        ]
+      }
     ]
   }
 }
