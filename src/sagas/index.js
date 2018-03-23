@@ -14,7 +14,9 @@ function* watchIncrementAsync() {
 
 function* helloSaga() {
   yield delay(1000)
-  console.log('Hello Sagas!')
+//  console.log('Hello Sagas!')
+  yield put({ type: 'INCREMENT' })
+  yield helloSaga()
 }
 
 // notice how we now only export the rootSaga
