@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "node_modules/.bin/webpack --mode development",
+    "socket-server-ts": "./node_modules/.bin/ts-node -- ./server/index.ts",
     "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server  --mode development --inline"
   },
   "author": "maixislav",
@@ -19,16 +20,20 @@
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.4",
     "html-webpack-plugin": "^3.0.7",
+    "node-ts": "^2.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
+    "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "transform-runtime": "0.0.0",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.7.2",
     "webpack": "^4.1.1",
     "webpack-dev-server": "^3.1.1"
   },
