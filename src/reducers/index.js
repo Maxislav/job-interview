@@ -1,6 +1,6 @@
 export  function counterReducer(state = {count: 0}, action) {
 
-  console.log(action )
+  //console.log(io );
   switch (action.type) {
     case 'INCREMENT':
     //{...state, ...{count: state.count+1}};

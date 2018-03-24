@@ -1,18 +1,22 @@
 const NODE_ENV = process.env.NODE_ENV || "production";
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Webpack = require("webpack");
+//const io = require('socket.io-client');
 
 const config = {
   entry: {
+    //socket: './node_modules/socket.io-client/dist/socket.io.js',
     app: './src/index.jsx',
   },
   output: {
     filename: '[name].build.js'
   },
   plugins: [
+ 
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
+    
   ],
   devtool: NODE_ENV == 'dev' ? 'source-map' : false,
   devServer : {
@@ -20,9 +24,12 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-
+   alias: {
+            'io': './node_modules/socket.io-client/dist/socket.io.js'
+        }
   },
   module: {
+    //noParse: [  /io/ ],
     rules: [
       {
         test: /\.(js|jsx)$/,
