@@ -2,19 +2,14 @@ import {socket} from '../service/socket.service.js'
 import { delay } from 'redux-saga'
 import { eventChannel } from 'redux-saga';
 import { put, takeEvery, all, call, take } from 'redux-saga/effects'
-
-import { createAction } from 'redux-act';
-
-const actionTable = createAction('TABLETKA');
-
-
+import {tableChangeAction} from "../reducers/actions";
 
 
 function subscribe(socket) {
   return eventChannel(emit => {
     socket.on('table', ({data}) => {
       //console.log('table', data)
-      emit(actionTable({table: data}))
+      emit(tableChangeAction({table: data}))
     })
 
    /* socket.on('users.login', ({ username }) => {
@@ -53,7 +48,7 @@ function* helloSaga() {
   //yield helloSaga()
 }
 
-function* s(){
+function* socketInit(){
   const channel = yield call(subscribe, socket);
   while (true) {
     let action = yield take(channel);
@@ -66,7 +61,7 @@ function* s(){
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
   yield all([
-    s(),
+    socketInit(),
     helloSaga(),
     watchIncrementAsync(),
 
