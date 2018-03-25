@@ -1,6 +1,37 @@
+import {socket} from '../service/socket.service.js'
 import { delay } from 'redux-saga'
-import { put, takeEvery, all } from 'redux-saga/effects'
+import { eventChannel } from 'redux-saga';
+import { put, takeEvery, all, call, take } from 'redux-saga/effects'
 
+import { createAction } from 'redux-act';
+
+const actionTable = createAction('TABLETKA');
+
+
+
+
+function subscribe(socket) {
+  return eventChannel(emit => {
+    socket.on('table', ({data}) => {
+      //console.log('table', data)
+      emit(actionTable({table: data}))
+    })
+
+   /* socket.on('users.login', ({ username }) => {
+      emit(addUser({ username }));
+    });
+    socket.on('users.logout', ({ username }) => {
+      emit(removeUser({ username }));
+    });
+    socket.on('messages.new', ({ message }) => {
+      emit(newMessage({ message }));
+    });
+    socket.on('disconnect', e => {
+      // TODO: handle
+    });*/
+    return () => {};
+  });
+}
 
 function* incrementAsync() {
   yield delay(2000)
@@ -15,15 +46,29 @@ function* watchIncrementAsync() {
 function* helloSaga() {
   yield delay(1000)
 //  console.log('Hello Sagas!')
+
+
+
   yield put({ type: 'INCREMENT' })
-  yield helloSaga()
+  //yield helloSaga()
 }
+
+function* s(){
+  const channel = yield call(subscribe, socket);
+  while (true) {
+    let action = yield take(channel);
+    yield put(action);
+  }
+}
+
 
 // notice how we now only export the rootSaga
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
   yield all([
+    s(),
     helloSaga(),
-    watchIncrementAsync()
+    watchIncrementAsync(),
+
   ])
 }

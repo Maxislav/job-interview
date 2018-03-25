@@ -8,7 +8,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import rootSaga  from './sagas'
 import {Counter} from "./components";
-import  './servise/socket.service'
+import  './service/socket.service'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(

@@ -1,11 +1,11 @@
+
 export class Eventer{
-    private _events: {};
+    private _events: {} = {};
 
     /**
      * @param {String?} bookmark
      */
     constructor(){
-        this._events = {};
     }
     on(name, func){
         this._create(name);

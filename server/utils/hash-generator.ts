@@ -23,7 +23,7 @@ export class HashGenerator{
     public getName(): string{
         let name = '';
         for(let i = 0; i < 4; i++){
-            name += HashGenerator.TYPES[this.getRandom(0, 26, true)]
+            name += HashGenerator.POSSIBLE[this.getRandom(0, 26, true)]
         }
         return name
     }
@@ -42,7 +42,7 @@ export class HashGenerator{
         return this.getRandom(1, 10, true)
     }
 
-    private getRandom(min: number, max: number, int?: boolean): number {
+    private getRandom(min: number, max: number, int: boolean): number {
         var rand = min + Math.random() * (max - min);
         if (int) {
             rand = Math.round(rand)
@@ -51,7 +51,7 @@ export class HashGenerator{
     }
 
     getTimeUpdate(){
-        return this.getRandom(1000, 5000, true)
+        return this.getRandom(5000, 20000, true)
     }
 
 

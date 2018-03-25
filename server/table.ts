@@ -6,13 +6,12 @@ import {Eventer} from './utils/eventer'
 const hashGenerator = new HashGenerator()
 
 class Table extends Eventer implements TableInterface{
-    id: string;
-    type: tableType;
-    name: string;
-    players: number;
-    maxPlayers: number;
+    public id: string;
+    public type: tableType;
+    public name: string;
+    public players: number;
+    public maxPlayers: number;
     private timer: any;
-
     constructor(){
         super()
         this.id = hashGenerator.getNewHash()
@@ -36,10 +35,18 @@ class Table extends Eventer implements TableInterface{
         }
     }
 
-
-    on(name: string, cb: Function ){
-
+    toDate(){
+        return ({
+            id: this.id,
+            name: this.name,
+            players: this.players,
+            type: this.type,
+            maxPlayers: this.maxPlayers,
+        })
     }
+
+
+
 }
 
 export class Room{
@@ -52,14 +59,19 @@ export class Room{
             const table = new Table();
             table.on('change', (t)=>{
                 this.emitChangeTable(t)
-            })
-            this.tableList.push()
+            });
+            this.tableList.push(table)
         }
 
     }
 
     emitChangeTable(table: Table){
+        console.log('table update ', table.id, table.name)
+        this.userList.forEach(user => {
 
+
+            user.emit('table', ({data: table.toDate()}))
+        })
     }
 
 

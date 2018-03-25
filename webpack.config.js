@@ -24,9 +24,7 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-   alias: {
-            'io': './node_modules/socket.io-client/dist/socket.io.js'
-        }
+
   },
   module: {
     //noParse: [  /io/ ],

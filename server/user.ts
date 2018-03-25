@@ -7,7 +7,7 @@ export class User {
     constructor(socket: any, private room: Room){
         this.socket = socket;
         this.id = socket.id;
-        this.emit = socket.emit;
+        this.emit = socket.emit.bind(socket);
         this.room.registerUser(this)
         console.log('connect    ', this.id)
         socket.on('disconnect',this.onDisconnect)
