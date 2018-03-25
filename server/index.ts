@@ -1,24 +1,11 @@
+import {Io} from './socket'
+import {socketPort} from './constant'
+import {User} from "./user";
+import { Room } from './table'
 
-import * as socketIo from 'socket.io';
+const room = new Room()
 
-
-class Client{
-	constructor(socket){
-		this.on = socket.on
-
-	}
-}
-
-class B {
-	constructor(port: number){
-		Object.setPrototypeOf(this, socketIo())
-		this.on('connection', function(client){
-			console.log('connect');
-			new Client(client)
-		});
-		this.listen(port)
-	}
-}
-
-
-export default new B(3000)
+new Io(socketPort)
+    .on('connection', function (client) {
+        new User(client, room)
+    });

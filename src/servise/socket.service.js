@@ -1,2 +1,2 @@
 import io from 'socket.io-client'
-io('http://localhost:3000')
+io('http://localhost:8888')
