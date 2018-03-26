@@ -1,7 +1,20 @@
 .component
-  border 0.1rem solid black
   padding 1rem
-  display inline-block
+  width 220px
+  overflow hidden
 
+  &>div
+    border 0.1rem solid black
+    background rgba(0, 255, 0, 0.1)
 .danger
   border 0.1rem solid red
+.row
+  display flex
+  margin 0 -10px
+.cell
+  padding 5px 10px
+
+.ellipsis
+  white-space: nowrap; /* Запрещаем перенос строк */
+  overflow: hidden; /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis;
