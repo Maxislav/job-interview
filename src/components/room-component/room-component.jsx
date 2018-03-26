@@ -5,7 +5,8 @@ import className from './room-component.styl'
 
 @connect(
   state =>({
-    count: state.count
+    count: state.count,
+    tableList: state.tableList
   })
 )
 export class RoomComponent extends Component {
@@ -18,8 +19,9 @@ export class RoomComponent extends Component {
   render(){
     return(
       <div className={className.component}>
-        {this.props.count}
-        <TableComponent/>
+        {this.props.tableList.map(table=> {
+          return <TableComponent key={table.id} tableId={table.id}/>
+        })}
       </div>
     )
   }

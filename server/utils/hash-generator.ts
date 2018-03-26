@@ -1,7 +1,8 @@
+import {timeUpadte} from "../constant";
 
 export class HashGenerator{
     private  hashList: string[] = []
-    static TYPES: tableType[] = ['CIRCLE', 'CIRCLE']
+    static TYPES: tableType[] = ['CIRCLE', 'SQUARE']
     static POSSIBLE: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 
@@ -27,9 +28,6 @@ export class HashGenerator{
         }
         return name
     }
-
-
-
     public getType(): tableType{
         return   HashGenerator.TYPES[this.getRandom(0, 1, true)]
     }
@@ -43,7 +41,7 @@ export class HashGenerator{
     }
 
     private getRandom(min: number, max: number, int: boolean): number {
-        var rand = min + Math.random() * (max - min);
+        let rand = min + Math.random() * (max - min);
         if (int) {
             rand = Math.round(rand)
         }
@@ -51,7 +49,7 @@ export class HashGenerator{
     }
 
     getTimeUpdate(){
-        return this.getRandom(5000, 20000, true)
+        return this.getRandom(timeUpadte.min,timeUpadte.max, true)
     }
 
 

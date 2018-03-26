@@ -19,6 +19,7 @@ class Table extends Eventer implements TableInterface{
         this.name = hashGenerator.getName()
         this.init()
         this.timer = setInterval(() => {
+            this.update()
             this.emit('change', this)
         }, hashGenerator.getTimeUpdate())
     }
@@ -29,13 +30,17 @@ class Table extends Eventer implements TableInterface{
         return this
     }
 
+    update(){
+        return this.init()
+    }
+
     destroy(){
         if(this.timer){
             clearInterval(this.timer)
         }
     }
 
-    toDate(){
+    toData(): TableInterface{
         return ({
             id: this.id,
             name: this.name,
@@ -53,7 +58,6 @@ export class Room{
     public userList: Array<User> = [];
     public tableList: Table[] = [];
     public timer: any
-
     constructor(){
         for(let i = 0; i<tableListCont; i++){
             const table = new Table();
@@ -62,17 +66,19 @@ export class Room{
             });
             this.tableList.push(table)
         }
-
     }
 
-    emitChangeTable(table: Table){
+    private emitChangeTable(table: Table){
         console.log('table update ', table.id, table.name)
         this.userList.forEach(user => {
-
-
-            user.emit('table', ({data: table.toDate()}))
+            user.onChangeTable(table.toData())
         })
     }
+
+    public getTableListData(): TableInterface[]{
+        return this.tableList.map(t=>t.toData())
+    }
+
 
 
     start(){
@@ -85,6 +91,11 @@ export class Room{
 
     registerUser(user: User): Room{
         this.userList.push(user)
+        return this
+    }
+
+    sendTableList(user: User): Room{
+
         return this
     }
 

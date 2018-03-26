@@ -12,7 +12,9 @@ const config = {
     filename: '[name].build.js'
   },
   plugins: [
- 
+    new Webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(NODE_ENV),
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
@@ -36,7 +38,7 @@ const config = {
           {
             loader: 'babel-loader',
             options:{
-              presets: [ 'env', 'react'],
+              presets: [ 'es2016', 'react'],
               plugins: [
                 ["transform-runtime", {
                 "polyfill": false,

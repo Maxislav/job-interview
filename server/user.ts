@@ -8,13 +8,22 @@ export class User {
         this.socket = socket;
         this.id = socket.id;
         this.emit = socket.emit.bind(socket);
-        this.room.registerUser(this)
+        this.room.registerUser(this);
+        this.emitTableList(this.room.getTableListData())
+
         console.log('connect    ', this.id)
         socket.on('disconnect',this.onDisconnect)
 
 
     }
 
+    onChangeTable(table: TableInterface){
+        this.socket.emit('table', ({data: table}))
+    }
+
+    emitTableList(tableList: TableInterface[]){
+        this.socket.emit('tableList', ({data: tableList}))
+    }
 
 
     @autobind

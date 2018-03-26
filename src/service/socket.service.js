@@ -1,2 +1,3 @@
 import io from 'socket.io-client'
-export const socket = io('http://localhost:8888')
+import socketUrl from '../constant/url-constant'
+export const socket = io(socketUrl);
