@@ -69,7 +69,6 @@ export class Room{
     }
 
     private emitChangeTable(table: Table){
-        console.log('table update ', table.id, table.name)
         this.userList.forEach(user => {
             user.onChangeTable(table.toData())
         })

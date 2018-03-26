@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "NODE_ENV=prod node_modules/.bin/webpack --mode production",
+    "prod": "NODE_ENV=dev node_modules/.bin/webpack --mode development",
+    "static-server-ts": "./node_modules/.bin/ts-node -- ./server/static.ts --rootdir ../dist",
     "socket-server-ts": "./node_modules/.bin/ts-node -- ./server/index.ts",
     "dev": "NODE_ENV=dev node_modules/.bin/webpack-dev-server  --mode development --inline"
   },
@@ -45,6 +46,6 @@
     "ts-node": "^5.0.1",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
-    "node-ts": "^2.1.2",
+    "node-ts": "^2.1.2"
   }
 }

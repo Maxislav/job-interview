@@ -9,7 +9,7 @@ export class User {
         this.id = socket.id;
         this.emit = socket.emit.bind(socket);
         this.room.registerUser(this);
-        this.emitTableList(this.room.getTableListData())
+        this.emitTableList()
 
         console.log('connect    ', this.id)
         socket.on('disconnect',this.onDisconnect)
@@ -21,8 +21,9 @@ export class User {
         this.socket.emit('table', ({data: table}))
     }
 
-    emitTableList(tableList: TableInterface[]){
-        this.socket.emit('tableList', ({data: tableList}))
+    emitTableList(){
+        console.log('emit table list')
+        this.socket.emit('tableList', ({data: this.room.getTableListData()}))
     }
 
 
