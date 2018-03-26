@@ -9,8 +9,10 @@ export class User {
         this.id = socket.id;
         this.emit = socket.emit.bind(socket);
         this.room.registerUser(this);
-        this.emitTableList()
 
+
+
+        this.emitTableList()
         console.log('connect    ', this.id)
         socket.on('disconnect',this.onDisconnect)
 
