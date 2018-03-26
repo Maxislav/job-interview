@@ -41,10 +41,10 @@ const config = {
               presets: [ 'es2016', 'react'],
               plugins: [
                 ["transform-runtime", {
-                "polyfill": false,
+                "polyfill": true,
                 "regenerator": true
               }],
-                ['transform-decorators-legacy']]
+                ['transform-decorators-legacy'], ['transform-object-rest-spread']]
             }
           }
 

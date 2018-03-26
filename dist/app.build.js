@@ -32518,9 +32518,9 @@ if(false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 const socketUrl = {
-  //dev:'http://localhost:8888',
-  prod: 'http://178.62.44.54:8888',
-  dev: 'http://178.62.44.54:8888'
+  dev: 'http://localhost:8888',
+  prod: 'http://178.62.44.54:8888'
+  //dev: 'http://178.62.44.54:8888'
 };
 /* harmony default export */ __webpack_exports__["default"] = (socketUrl["dev"]);
 

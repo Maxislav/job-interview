@@ -6,4 +6,4 @@ interface TableInterface {
     maxPlayers: number
 }
 
-type tableType = "CIRCLE" | "SQOARE"
+type tableType = "CIRCLE" | "SQUARE"

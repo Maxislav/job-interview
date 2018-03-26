@@ -2,11 +2,22 @@ import React, {Component} from 'react'
 import className from './table-component.styl'
 import {connect} from "react-redux";
 
+const initStyle  = {
+  border: '0.1rem solid black',
+  background: 'rgba(0, 255, 0, 0.1)'
+}
+
 const dangerStyle = {
   border: '0.1rem solid red',
   background: 'rgba(255, 0 ,0 , 0.1)'
 }
 
+
+const getStyle = (table) =>{
+  if(!table.name) return null;
+  if(table.players === table.maxPlayers) return dangerStyle
+  return initStyle
+}
 
 
 const Row = ({title, value}) => {
@@ -38,7 +49,7 @@ export class TableComponent extends Component{
     const {name, type, players, maxPlayers} = this.props.table
     return (
       <div className={className.component} >
-        <div className={className.cell} style={players === maxPlayers ? dangerStyle :null }>
+        <div className={className.cell} style={getStyle(this.props.table)}>
           <Row title={'id'} value={this.props.tableId}/>
           <Row title={'name'} value={name}/>
           <Row title={'type'} value={type}/>

@@ -2,6 +2,14 @@ import {socket} from '../service/socket.service.js'
 import { eventChannel } from 'redux-saga';
 import { put, takeEvery, all, call, take } from 'redux-saga/effects'
 import {tableChangeAction, tableListAction} from "../reducers/actions";
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from "redux-saga";
+import {counterReducer} from "../reducers";
+
+
+
+
+
 
 
 function subscribe(socket) {
@@ -16,6 +24,27 @@ function subscribe(socket) {
     return () => {};
   });
 }
+//const actionnn = type => store.dispatch({type})
+
+
+function aa(val, i) {
+  return {table:val[i]}
+}
+
+
+
+function* incrementAsync(action) {
+  for(let i = 0; i < action.payload.tableList.length; i++){
+    const table = yield call(aa, action.payload.tableList, i );
+    yield put({ type: 'TABLE_CHANGE', payload:table })
+  }
+}
+
+
+
+function* watchInitAsync() {
+  yield takeEvery('TABLE_LIST', incrementAsync)
+}
 
 function* socketInit(){
   const channel = yield call(subscribe, socket);
@@ -24,8 +53,17 @@ function* socketInit(){
     yield put(action);
   }
 }
-export default function* rootSaga() {
+function* rootSaga() {
   yield all([
     socketInit(),
+    watchInitAsync()
   ])
 }
+
+
+const sagaMiddleware = createSagaMiddleware();
+export const store = createStore(
+  counterReducer,
+  applyMiddleware(sagaMiddleware)
+)
+sagaMiddleware.run(rootSaga)

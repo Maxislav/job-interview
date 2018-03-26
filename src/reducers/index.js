@@ -1,7 +1,9 @@
 const defaultState = {
   count: 0,
   tableList: [],
-  table: {}
+  table: {
+    players: -1
+  }
 }
 
 
@@ -13,6 +15,8 @@ export  function counterReducer(state = defaultState, action) {
       return Object.assign({}, state, action.payload)
     case 'TABLE_CHANGE':
       return Object.assign({}, state, action.payload)
+    case 'TABLE_INIT':
+      return state
     case 'INCREMENT':
     //{...state, ...{count: state.count+1}};
       return Object.assign({}, state, {count: state.count+1})
