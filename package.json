@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "NODE_ENV=dev node_modules/.bin/webpack --mode development",
+    "prod": "NODE_ENV=prod node_modules/.bin/webpack --mode development",
     "super-prod": "NODE_ENV=prod node_modules/.bin/webpack --mode production",
     "static-server-ts": "./node_modules/.bin/ts-node -- ./server/static.ts --rootdir ../dist",
     "socket-server-ts": "./node_modules/.bin/ts-node -- ./server/index.ts",

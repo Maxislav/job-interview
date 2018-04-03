@@ -33242,7 +33242,7 @@ const socketUrl = {
   prod: 'http://178.62.44.54:8888'
   //dev: 'http://178.62.44.54:8888'
 };
-/* harmony default export */ __webpack_exports__["default"] = (socketUrl["dev"]);
+/* harmony default export */ __webpack_exports__["default"] = (socketUrl["prod"]);
 
 /***/ }),
 
@@ -33478,4 +33478,3 @@ if(false) {}
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.build.js.map
