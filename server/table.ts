@@ -12,16 +12,20 @@ class Table extends Eventer implements TableInterface{
     public players: number;
     public maxPlayers: number;
     private timer: any;
-    constructor(){
+    private timeUpdate: number;
+    constructor(private num){
         super()
         this.id = hashGenerator.getNewHash()
         this.maxPlayers = hashGenerator.getMaxPlayer()
         this.name = hashGenerator.getName()
         this.init()
+        this.timeUpdate = hashGenerator.getTimeUpdate(num*100)
+        console.log('update time',this.timeUpdate )
         this.timer = setInterval(() => {
-            this.update()
+            this.update();
+            console.log('emit ->',this.name)
             this.emit('change', this)
-        }, hashGenerator.getTimeUpdate())
+        }, this.timeUpdate)
     }
 
     init(): Table{
@@ -60,7 +64,7 @@ export class Room{
     public timer: any
     constructor(){
         for(let i = 0; i<tableListCont; i++){
-            const table = new Table();
+            const table = new Table(i);
             table.on('change', (t)=>{
                 this.emitChangeTable(t)
             });
