@@ -19,7 +19,7 @@ class Table extends Eventer implements TableInterface{
         this.maxPlayers = hashGenerator.getMaxPlayer()
         this.name = hashGenerator.getName()
         this.init()
-        this.timeUpdate = hashGenerator.getTimeUpdate(num*100)
+        this.timeUpdate = hashGenerator.getTimeUpdate(num*70)
         console.log('update time',this.timeUpdate )
         this.timer = setInterval(() => {
             this.update();

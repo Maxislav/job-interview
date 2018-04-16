@@ -48,7 +48,7 @@ export class HashGenerator{
     }
 
     getTimeUpdate(min: number){
-        return this.getRandom(timeUpdate.min + min,timeUpdate.max, true)
+        return this.getRandom(timeUpdate.min+min,timeUpdate.max, true)
     }
 
 

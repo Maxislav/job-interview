@@ -1,5 +1,5 @@
 import {socket} from '../service/socket.service.js'
-import { eventChannel } from 'redux-saga';
+import {delay, eventChannel} from 'redux-saga';
 import { put, takeEvery, all, call, take } from 'redux-saga/effects'
 import {tableChangeAction, tableListAction} from "../reducers/actions";
 import { createStore, applyMiddleware } from 'redux'
@@ -24,13 +24,10 @@ function subscribe(socket) {
     return () => {};
   });
 }
-//const actionnn = type => store.dispatch({type})
-
 
 function aa(val, i) {
   return {table:val[i]}
 }
-
 
 
 function* incrementAsync(action) {
